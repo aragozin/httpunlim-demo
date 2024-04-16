@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>info.ragozin.demo.httpunlim</groupId>
+    <artifactId>http-unlim-demo</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>${project.groupId}::${project.artifactId}</name>
+
+    <modules>
+        <module>app</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.uri>${project.baseUri}</project.uri>
+        <slf4j.version>1.7.36</slf4j.version>
+    </properties>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <version>2.19.1</version>
+                </plugin>
+                <plugin>
+                  <groupId>com.google.cloud.tools</groupId>
+                  <artifactId>jib-maven-plugin</artifactId>
+                  <version>3.4.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-clean-plugin</artifactId>
+              <!--<version>${maven-clean-plugin.version}</version>-->
+              <configuration>
+                <filesets>
+                  <fileset>
+                    <directory>${project.basedir}</directory>
+                    <includes>
+                      <include>target</include>
+                      <include>surefire*</include>
+                    </includes>
+                    <followSymlinks>false</followSymlinks>
+                  </fileset>
+                  <fileset>
+                    <directory>${project.basedir}/pids</directory>
+                    <directory>${project.basedir}/var</directory>
+                  </fileset>
+                </filesets>
+              </configuration>
+            </plugin>
+        </plugins>
+
+    </build>
+
+    <dependencyManagement>
+      <dependencies>
+
+        <dependency>
+          <groupId>info.ragozin.proflab</groupId>
+          <artifactId>proflab-utils</artifactId>
+          <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+          <groupId>com.fasterxml.jackson</groupId>
+          <artifactId>jackson-bom</artifactId>
+          <version>2.13.3</version>
+          <scope>import</scope>
+          <type>pom</type>
+        </dependency>
+
+        <dependency>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+          <version>2.15.0</version>
+        </dependency>
+
+        <dependency>
+           <groupId>ch.qos.logback</groupId>
+           <artifactId>logback-classic</artifactId>
+           <version>1.2.11</version>
+        </dependency>
+
+        <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>jcl-over-slf4j</artifactId>
+           <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>jul-to-slf4j</artifactId>
+           <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>slf4j-api</artifactId>
+           <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+           <groupId>org.slf4j</groupId>
+           <artifactId>slf4j-api</artifactId>
+           <version>${slf4j.version}</version>
+        </dependency>
+
+      </dependencies>
+    </dependencyManagement>
+
+</project>
